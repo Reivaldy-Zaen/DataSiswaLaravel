@@ -44,10 +44,10 @@
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                                                 </button>
                                             </a>
-                                            <form method="POST" action="{{ url('/student' . '/' . $item->id) }}" accept-charset="UTF-8" class="d-inline" onsubmit="return confirmDelete()">
+                                            <form id="deleteForm" method="POST" action="{{ url('/student' . '/' . $item->id) }}" accept-charset="UTF-8" class="d-inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Student">
+                                                <button type="button" class="btn btn-danger btn-sm" title="Delete Student" onclick="confirmDelete()">
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                                                 </button>
                                             </form>
@@ -159,7 +159,20 @@
 
     <script>
         function confirmDelete() {
-            return confirm('Apakah Anda yakin ingin menghapus siswa ini?');
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, submit the form
+                document.getElementById('deleteForm').submit();
+            }
+        });
+    }
     </script>
 @endsection

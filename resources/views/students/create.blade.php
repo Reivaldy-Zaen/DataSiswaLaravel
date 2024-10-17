@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg rounded">
         <div class="card-header bg-primary text-white text-center">
-            <h4>Edit Siswa</h4>
+            <h4>Add Siswa</h4>
         </div>
         <div class="card-body">
             <form action="{{ url('student') }}" method="post">
